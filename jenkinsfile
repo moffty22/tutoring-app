@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    tools {
+        // Specify the Maven version installed in Jenkins
+        maven 'maven3.9.9'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Clone the GitHub repository
+                git branch: 'main', url: 'https://github.com/moffty22/tutoring-app.git'
+            }
+        }
+        stage('Build Artifact') {
+            steps {
+                // Build the project using Maven
+                sh 'mvn clean package'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean the workspace after build
+            cleanWs()
+        }
+    }
+}
+
