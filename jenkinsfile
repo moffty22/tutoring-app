@@ -10,8 +10,8 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the GitHub repository
-                git branch: 'main', url: 'https://github.com/moffty22/tutoring-app.git'
-            }
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/moffty22/tutoring-app.git'
+              }
         }
         stage('Build Artifact') {
             steps {
